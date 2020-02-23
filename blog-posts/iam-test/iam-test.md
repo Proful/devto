@@ -1,9 +1,8 @@
 ---
 published: false
-title: "Your title"
-cover_image: "https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/master/blog-posts/NAME-OF-YOUR-BLOG-POST/assets/your-asset.png"
+title: "IAM TEST - 1"
 description: "Description of the article"
-tags: tag1, tag2, tag3
+tags: aws, iam, tag3
 series:
 canonical_url:
 ---
