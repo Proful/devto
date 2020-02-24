@@ -19,7 +19,7 @@ When I was starting with the myriad of AWS services, to get my head around IAM c
 
 I will start with an analogy of facebook. Whenever we think about users we picture ourselves as facebook users. My initial impressions about IAM user is analogous to facebook user and it's management. But this is completely wrong. IAM is not going to help you in managing your end customers who log in to your website. 
 
-Then what is IAM user for? You can think of yourselves, developers, operation guys and whoever going to manage or interested in your AWS servers or services. Whoever wants to start/stop servers, monitor logs, etc. Also, for yourselves you can create multiple users when you wear different hats at different times. But there is an elegant way to wear different hats in the form of IAM roles, we will discuss that later. 
+Then what is IAM user for? You can think of yourselves, developers, operation guys and whoever going to manage or interested in your AWS servers or services. Whoever wants to start/stop servers, monitor logs, etc. Also, for yourselves you can create multiple users when you wear different hats at different times. But there is an elegant way to wear different hats in the form of IAM roles, which we will discuss that later. 
 
 ![IAM Users](./assets/2-iam.png)
 
@@ -51,8 +51,11 @@ There exist EC2 key pair which we can generate and associate with ec2 instance f
 
 But if you talk about SSH keys concerning IAM user, there is ***one exception***. As an analogy, If you're using GitHub or Bitbucket to access code repository. You need to configure your SSH public key in their server as well. Similarly, to access AWS Code Commit from a IAM user point of view, you need to configure SSH public key to that particular user. There is no need to go to the code commit to configure SSH keys.
 
+### Accessing AWS Resources using X.509 Certificates
+This is a new mechanism to authenticate a user. It is considered to be more secure than user name and password or access key based approach. AWS IoT (Internet of Thing) uses this approach. In this case, private key is stored in the device in a more secure way and you can't copy paste into another device.
+
 ### Recommended not to use root user
-Whenever you create a AWS account using your email address and your credit card details, then you ideally create a AWS root user, which is extremely powerful. And it is possible to create access key id and secret key for the same, but it is not recommended to generate and use it. It's recommended to create another user and use it accordingly. Sometime the novice or the beginner users will use their root user for doing any operation or for the learning purposes. However, it is recommended not to use your root user because it can have catastrophic consequences if credentials compromised. It is advisable to create strong password and enable multi-factor authentication(MFA). I'll discuss more about multi factor authentication later. 
+Whenever you create a AWS account using your email address and your credit card details, then you ideally create a AWS root user, which is extremely powerful. And it is possible to create access key id and secret key for the same, but it is not recommended to generate and use it. It's recommended to create another user and use it accordingly. Sometime the novice or the beginner users will use their root user for doing any operation or for the learning purposes. However, it is recommended not to use your root user because it can have catastrophic consequences if credentials compromised. It is advisable to create strong password and enable multi-factor authentication(MFA). I'll discuss more about multi-factor authentication later. 
 
 
 ### Brief introduction to ARN
@@ -63,7 +66,8 @@ arn:aws:iam::account-id:user/user-name-with-path
 arn:aws:iam::123456789012:user/Steve
 ```
 
-
+## IAM Group
+Groups created to make life of administrator easier. Instead of granting policies/permission to individual level, it is more easy and efficient to manage those in group level. There is no special credentials in group level and using group you cannot access any AWS resources directly.
 
 ## Why we need IAM Role?
 To access AWS resources for example, s3, or RDS or any other AWS resources, we can use access key or access secret key programmatically for making a read or write operation, depending upon the permission provided to that particular user. But this is not a recommended or secure way to access any AWS resources, because keys can be viewed in plain text who has access to the respective EC2 instance.
