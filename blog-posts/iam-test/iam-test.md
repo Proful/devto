@@ -1,9 +1,9 @@
 ---
 published: false
-title: "A brief introduction to AWS IAM in beginner perspective"
+title: "Beginner friendly Introduction to AWS IAM"
 cover_image:
 description:
-tags: aws, iam, csaa, AWS Certification
+tags: AWS, iam, AWS Certification
 series:
 canonical_url:
 ---
