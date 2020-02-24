@@ -1,9 +1,9 @@
 ---
 published: false
-title: "IAM Part I"
+title: "A brief introduction to AWS IAM in beginner perspective"
 cover_image:
 description:
-tags: aws, iam
+tags: aws, iam, csaa, AWS Certification
 series:
 canonical_url:
 ---
@@ -20,6 +20,8 @@ When I was starting with the myriad of AWS services, to get my head around IAM c
 I will start with an analogy of facebook. Whenever we think about users we picture ourselves as facebook users. My initial impressions about IAM user is analogous to facebook user and it's management. But this is completely wrong. IAM is not going to help you in managing your end customers who log in to your website. 
 
 Then what is IAM user for? You can think of yourselves, developers, operation guys and whoever going to manage or interested in your AWS servers or services. Whoever wants to start/stop servers, monitor logs, etc. Also, for yourselves you can create multiple users when you wear different hats at different times. But there is an elegant way to wear different hats in the form of IAM roles, which we will discuss that later. 
+
+It's not mandatory to use email address as user name. You can use any sensible string as user name as long as they are unique inside a accounts.
 
 ![IAM Users](./assets/2-iam.png)
 
@@ -75,3 +77,11 @@ To access AWS resources for example, s3, or RDS or any other AWS resources, we c
 AWS IAM provides an elegant way to manage permission and provide a secure way of communication, in the form of IAM roles. IAM role, basically is a logical entity created where we can associate particular permission, for example, read or write access to s3, or read-only access to RDS database. We can associate the permission or policy to an IAM role. Whenever needed, an IAM user or a group or ec2 instance can assume the particular IAM role and hence it has privilege to do that particular operation. And, and it can do without storing or worry about the credential.
 
 ![IAM Role](./assets/3-iam.png)
+
+### How to assume an IAM role?
+Applications or AWS services such as EC2 can assume an IAM role by calling AWS Security Token Service (STS) AssumeRole APIs. These API will return a set of temporary credentials which is valid for a certain duration. Application can use those temporary credentials to perform any desired operation on target resources such as S3. We will discuss in details in another article.
+
+### AWS service role for an EC2 instance
+It is possible to store access keys as described earlier and application can use those credentials when needed. However, it is not very secure practice to store keys in plain text and like password we should change in timely manner, access keys also should be changed. 
+
+We can create an IAM role with desired permission and attach to EC2 instance. Application inside the EC2 can retrieve the temporary credentials whenever it makes API calls using AWS SDK. No need to write additional code to retrieve the credentials and store it separately.
