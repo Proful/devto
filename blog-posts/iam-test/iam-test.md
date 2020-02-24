@@ -36,21 +36,20 @@ aws_access_key_id = AKIAI44QH8DHBEXAMPLE
 aws_secret_access_key = je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
 ```
 
-
-
 Also we can per each sesson, we can, we can create environment variables and we can store this access key and secret. And whenever we execute the AWS CLI commands we no need to pass access key ID and secret to each for each command exit execution. So automatically those two key pair will be used, and then authentication, authorization will happen based upon that.
 
 ```
-export AWS_ACCESS_KEY_ID="AKIAI44QH8DHBEXAMPLE"
-export AWS_SECRET_ACCESS_KEY="je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY"
-export AWS_SESSION_TOKEN="IQoJb......3J=="
+➜ export AWS_ACCESS_KEY_ID="AKIAI44QH8DHBEXAMPLE"
+➜ export AWS_SECRET_ACCESS_KEY="je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY"
 ```
-
-
 
 ### Is it possible to access AWS resources using SSH key attached to IAM user?
 
-To access any virtual server usage of the SSH keys is very common. So you basically generate a pair of SSH key one is public key and another one is private key, the private key you keep within your own local laptop and copy that public key and store into the remote server. Using this approach you no need to pass credentials each time you want to access. So you might be thinking, you can copy paste your public key to a particular IAM user and you should able to access all the ec2 servers you created in aws account. But this doesn't work in that fashion. There is no way you can copy paste the public key to the user level, and the user will be become a power user where it can access all the ec2 instances. But there are different way to access ec2 instance for example you can generate a key pair. And using key pair you can able to access that, you know, a ec2 level, and also using the public private key you have to configure into each ec2 instances individually but that is a separate different topic. But if you talk about SSG keys, there is one exception. In this case, and IAM user level, you can copy your public key, but for a particular use and particular use only. If you're using GitHub or Bitbucket to access code repository. You need to configure your SSH public key in their server as well. So for example, AWS also has not very popular. But one of the code repository available which is known as code commit, which is the AWS managed service. It is basically, similar to GitHub, GitHub or Bitbucket where equally you create your Git repository and you can basically there's a git repository and you can use all your git commands. So to access code commit from a user point of view, you have to generate this SSH key and you have to store the private key in the local machine and public key you have to configure inside a particular user. So, using that SSH key, whenever you like to access a code commit repository, you can do that. So you don't need to go to the code commit to do that basically here in the root user level. You can set up this SSH key and it will take care of the rest. 
+To access any virtual server usage of the SSH keys is very common. So you basically generate a pairs of SSH key one is public and another one is private, the private key you keep within your own local laptop and copy the public key and store into the remote server. Using this approach you no need to pass credentials each time you want to access. So you might be thinking, you can copy paste your public key to a particular IAM user and you should able to access all the ec2 servers you created in aws account. But this doesn't work in that fashion. There is no way you can copy paste the public key to the user level, and the user will be become a power user where it can access all the ec2 instances. 
+
+There exist EC2 key pair which we can generate and associate with ec2 instance for its access. However, we cannot associate the ec2 keypairs to a specific IAM user . 
+
+But if you talk about SSH keys with respect to IAM user, there is ***one exception***. As an analogy, If you're using GitHub or Bitbucket to access code repository. You need to configure your SSH public key in their server as well. Similary, to access AWS Code Commit from a IAM user point of view, you need to configure SSH public key to that particular user. There is no need to go to the code commit to configure SSH keys.
 
 ### Reocommended not to use Root user
 IAM root user is one of the very powerful aws user, whenever you were created a AWS account using using your email address and your credit card details, then you ideally created a IAM root user, which is extremely powerful. And you can, it is possible to create a, you know, access key ID and secret key ID for the same, but it is not recommended to generate, because you can always create a another user. And you can generate those credential for the same. So also, some sometime the novice or the beginner users will use their root user only for doing any operation or the for the learning purposes. But for any, any use case it is recommended not to use your root account user because it can have catastrophic consequences. So, better, you should create a very hard to use the very difficult email password ensuring proper place. And also it is recommended to do the MFA multi factor authentication. I'll discuss more about multi factor authentication later. But users to ensure that those do lock it properly and create a different user for all another accesses. 
