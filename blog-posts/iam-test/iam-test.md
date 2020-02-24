@@ -9,25 +9,44 @@ canonical_url:
 ---
 
 ## What is IAM?
-IAM stands for Identity Access Management. IAM is one of the core services of AWS and this is available Globally. Usually, most of the AWS services available to specific regions that you selected. On the other hand, even though you have multiple regions, you will have to manage IAM in one place. This means users, groups, roles created in IAM will be available to all-region.
+IAM stands for Identity Access Management and is one of the core services of AWS. Using IAM, you can control who can access to AWS resources. One important thing to remember is that IAM service is available globally. Usually, most of the AWS services available to specific regions that you selected. On the other hand, even though you have multiple regions, you will have to manage IAM in one place. This means users, groups, roles created in IAM will be available to all-region.
 
 
 ![IAM Global Service](./assets/1-iam.png)
 
 ## Who is IAM user? 
-When I was starting out with myriad of AWS services, to get my head around IAM concepts is the most daunting task. 
+When I was starting with the myriad of AWS services, to get my head around IAM concepts is the most daunting task. 
 
 I will start with an analogy of facebook. Whenever we think about users we picture ourselves as facebook users. My initial impressions about IAM user is analogous to facebook user and it's management. But this is completely wrong. IAM is not going to help you in managing your end customers who log in to your website. 
 
-Then what is IAM user for? You can think of yourselves, developers, operation guys and whoever going to manage or interested in your AWS servers or services. Whoever wants to start/stop servers, monitor logs, etc. Also, for your selves also you can create multiple users when you wear different hats at different times. But there is an elegant way to wear different hats in the form of IAM roles, we will discuss that later. 
+Then what is IAM user for? You can think of yourselves, developers, operation guys and whoever going to manage or interested in your AWS servers or services. Whoever wants to start/stop servers, monitor logs, etc. Also, for your selves you can create multiple users when you wear different hats at different times. But there is an elegant way to wear different hats in the form of IAM roles, we will discuss that later. 
 
 ![IAM Users](./assets/2-iam.png)
 
 ### Accessing AWS Console using user name and password
-Usually, to start with an IAM user using it's user name and password get access to the AWS console and play around with it. 
+As a starting point, an IAM user using it's user name and password can get access to the AWS console and play around with it. We can associate various permission what this particular user is allowed to do. In the later section, we shall delve in more details on the same.
 
 ### Accessing AWS Resources using CLI or programmatically
-IAM We can access AWS console using a simple user. In this case IAM user will use its credential, for example, username and password login into the AWS console, specific to a particular account. We can also access AWS resources, not using AWS console but using command line interface. To facilitate the access of AWS resources from CLI, we have to generate access key ID and secret access key for a particular user. And there are various ways to store this two pair of access key in your local system. For example, in AWS configuration file, we can store those access key and secret access key into the dot AWS directory. Also we can per each sesson, we can, we can create two environment variable, and we can store this access key and secret. And whenever we execute the AWS CLI commands we no need to pass access key ID and secret to each for each command exit execution. So automatically those two key pair will be used, and then authentication, authorization will happen based upon that.
+We can also access AWS resources, not using AWS console but using command-line interface or programmatically using shell script or java. To facilitate the access of AWS resources from CLI, we have to generate access key id and secret access key for a particular user. And there are various ways to store the two pairs of access key in your local system.
+
+```
+➜ cat ~/.aws/credentials
+[default]
+aws_access_key_id = AKIAI44QH8DHBEXAMPLE
+aws_secret_access_key = je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
+```
+
+
+
+Also we can per each sesson, we can, we can create environment variables and we can store this access key and secret. And whenever we execute the AWS CLI commands we no need to pass access key ID and secret to each for each command exit execution. So automatically those two key pair will be used, and then authentication, authorization will happen based upon that.
+
+```
+export AWS_ACCESS_KEY_ID="AKIAI44QH8DHBEXAMPLE"
+export AWS_SECRET_ACCESS_KEY="je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY"
+export AWS_SESSION_TOKEN="IQoJb......3J=="
+```
+
+
 
 ### Is it possible to access AWS resources using SSH key attached to IAM user?
 
