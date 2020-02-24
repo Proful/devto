@@ -51,14 +51,23 @@ There exist EC2 key pair which we can generate and associate with ec2 instance f
 
 But if you talk about SSH keys with respect to IAM user, there is ***one exception***. As an analogy, If you're using GitHub or Bitbucket to access code repository. You need to configure your SSH public key in their server as well. Similary, to access AWS Code Commit from a IAM user point of view, you need to configure SSH public key to that particular user. There is no need to go to the code commit to configure SSH keys.
 
-### Reocommended not to use Root user
-IAM root user is one of the very powerful aws user, whenever you were created a AWS account using using your email address and your credit card details, then you ideally created a IAM root user, which is extremely powerful. And you can, it is possible to create a, you know, access key ID and secret key ID for the same, but it is not recommended to generate, because you can always create a another user. And you can generate those credential for the same. So also, some sometime the novice or the beginner users will use their root user only for doing any operation or the for the learning purposes. But for any, any use case it is recommended not to use your root account user because it can have catastrophic consequences. So, better, you should create a very hard to use the very difficult email password ensuring proper place. And also it is recommended to do the MFA multi factor authentication. I'll discuss more about multi factor authentication later. But users to ensure that those do lock it properly and create a different user for all another accesses. 
+### Reocommended not to use root user
+Whenever you create a AWS account using your email address and your credit card details, then you ideally create a AWS root user, which is extremely powerful. And it is possible to create access key id and secret key  for the same, but it is not recommended to generate and use it. It's recommended to create another user and use it accordingly. Sometime the novice or the beginner users will use their root user for doing any operation or the for the learning purposes. However, it is recommended not to use your root user because it can have catastrophic consequences if credentials compromised. It is advisable to create strong password and enable multi factor authentication(MFA). I'll discuss more about multi factor authentication later. 
 
 
 ### Brief introduction to ARN
-Each Amazon resource have a unique ID (alpha numeric) associated with it. This unique id is known as ARN(Amazon Resource Name).Each IAM user has its ARN. 
+Each Amazon resource have a unique ID (alpha numeric) associated with it. This unique id is known as ARN(Amazon Resource Name). Each IAM user has its ARN. We can use this ARN to be more specific while giving permissions or in API calls.
+
+```
+arn:aws:iam::account-id:user/user-name-with-path
+arn:aws:iam::123456789012:user/Steve
+```
+
+
 
 ## Why we need IAM Role?
-To access AWS resources for example, s3, or RDS or any other AWS resources. We can use access key or access secret key associated with a particular user programmatically to making a read or write operation, depending upon the permission provided to that particular user. But this is not a recommended or secure practice to access any resources using the keys provided and AWS IAM provides a elegant way to manage the permission and provide a secure way of communication, by means of IAM role. So IAM role, basically is a logical entity created where we can associated a particular permission for read or write access to s3, or to read only access to a RDS database. So whichever the permission we needed. We can associate it to a IAM role. And this IAM role we no need to directly attach to a particular user or group or a ec2 instance. So whenever needed a IAM user or a group or ec2 can assume the particular IAM role with it has permission or which is it has privileged to to do that particular operation, for example, a ec2 instance would like to read from an s3 bucket one file, then it can assume a particular role, which allow this ec2 instance to do that operation. And, and it can do without, without storing or worry about the credential, because aws platform by means of where IAM role it eliminates all the temporary credential for us, and which is quite, quite. We don't need to worry about the credential management, so it won't be it is a very secret communication, we can achieve.
+To access AWS resources for example, s3, or RDS or any other AWS resources, we can use access key or access secret key programmatically for making a read or write operation, depending upon the permission provided to that particular user. But this is not a recommended or secure way to access any AWS resources, because keys can be viewed in plain text who has access to the respective EC2 instance.
+
+AWS IAM provides an elegant way to manage the permission and provide a secure way of communication, in the form of IAM roles. IAM role, basically is a logical entity created where we can associated a particular permission for example read or write access to s3, or read only access to a RDS database. We can associate the permission or policy to a IAM role. Whenever needed, an IAM user or a group or ec2 instance can assume the particular IAM role and hence it has privilege to do that particular operation. And, and it can do without storing or worry about the credential.
 
 ![IAM Role](./assets/3-iam.png)
