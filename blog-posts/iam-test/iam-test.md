@@ -1,7 +1,7 @@
 ---
 published: false
 title: "Beginner friendly Introduction to AWS IAM"
-cover_image: ""
+cover_image: "https://raw.githubusercontent.com/butu5/devto/master/blog-posts/iam-test/assets/3-iam.png"
 description:
 tags: AWS, IAM, AWS Certification, Beginner
 series:
