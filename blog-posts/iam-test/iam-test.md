@@ -8,7 +8,7 @@ series:
 canonical_url:
 ---
 
-As a beginner perspective, learning and exploring with the myriad of AWS services is often confusing and frustrating experience.An on top of that to get around the IAM concepts is seems like the most daunting task. In this article, I will try to declutter the complexity of IAM concepts using plain english.
+As a beginner perspective, learning and exploring with the myriad of AWS services is often confusing and frustrating experience. On top of that to get around the IAM concepts is seems like the most daunting task. In this article, I will try to declutter the complexity of IAM concepts using plain english.
 
 To start with, Identity Access Management (IAM) is one of the core services of AWS. Using IAM, you can control who can access to AWS resources. 
 
@@ -78,21 +78,21 @@ It is possible to store access keys as described earlier and the application can
 
 We can create an IAM role with desired permission and attach it to EC2 instance. Application inside the EC2 can retrieve the temporary credentials whenever it makes API calls using the AWS SDK. No need to write additional code to retrieve the credentials and store it separately.
 
-One important thing to remember is that IAM service is available globally. Usually, most of the AWS services available to specific regions that you selected. On the other hand, even though you have multiple regions, you will have to manage IAM in one place. This means users, groups, roles created in IAM will be available to all-region.
-
-
-![IAM Global Service](./assets/1-iam.png)
-
-It's not mandatory to use email as a user name. You can use any sensible string as a user name as long as they are unique inside an account.
-
-### Recommended not to use root user
+## Recommendation: DON'T USE Root User in day to day activity
 
 Whenever you create a AWS account using your email address and your credit card details, then you ideally create a AWS root user, which is extremely powerful. And it is possible to create access key id and secret key for the same, but it is not recommended to generate and use it. It's recommended to create another user and use it accordingly. Sometime the novice or the beginner users will use their root user for doing any operation or for the learning purposes. However, it is recommended not to use your root user because it can have catastrophic consequences if credentials compromised. It is advisable to create a strong password and enable multi-factor authentication(MFA). I'll discuss about multi-factor authentication later. 
 
+## Global vs Regional
 
-### Brief introduction to ARN
+One important thing to remember is that IAM service is available globally. Usually, most of the AWS services available to specific regions that you selected. On the other hand, even though you have multiple regions, you will have to manage IAM in one place. This means users, groups, roles created in IAM will be available to all-region.
 
-Each Amazon resource has a unique ID (alphanumeric) associated with it. This unique id is known as ARN(Amazon Resource Name). Each IAM user has its ARN. We can use this ARN to be more specific while giving permissions or in API calls.
+![IAM Global Service](./assets/1-iam.png)
+
+## Tips to Note
+
+- It's not mandatory to use email as a user name. You can use any sensible string as a user name as long as they are unique inside an account.
+
+- Each Amazon resource has a unique ID (alphanumeric) associated with it. This unique id is known as ARN(Amazon Resource Name). Each IAM user has its ARN. We can use this ARN to be more specific while giving permissions or in API calls.
 
 ```
 arn:aws:iam::account-id:user/user-name-with-path
