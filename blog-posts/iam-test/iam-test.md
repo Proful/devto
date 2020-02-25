@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "Beginner friendly Introduction to AWS IAM"
 cover_image: "https://raw.githubusercontent.com/butu5/devto/master/blog-posts/iam-test/assets/3-iam.png"
 description:
