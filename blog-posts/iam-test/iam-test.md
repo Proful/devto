@@ -88,7 +88,7 @@ One important thing to remember is that IAM service is available globally. Usual
 
 ![IAM Global Service](./assets/1-iam.png)
 
-## Tips to Note
+## Tips
 
 - It's not mandatory to use email as a user name. You can use any sensible string as a user name as long as they are unique inside an account.
 
@@ -98,3 +98,6 @@ One important thing to remember is that IAM service is available globally. Usual
 arn:aws:iam::account-id:user/user-name-with-path
 arn:aws:iam::123456789012:user/Steve
 ```
+
+
+*Hope you enjoy reading this article. I am planning to create similar articles on AWS and various programming topics. Appreciate if you can leave your feedback below. Stay tuned for future updates!*
