@@ -1,4 +1,7 @@
 [{
   "id": 266930,
   "relativePathToArticle": "./blog-posts/iam-test/iam-test.md"
+},{
+  "id": 270415,
+  "relativePathToArticle": "./blog-posts/aws-cors/aws-cors.md"
 }]
